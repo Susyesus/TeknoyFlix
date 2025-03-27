@@ -1,0 +1,13 @@
+<resources>
+    <string name="app_name">TeknoyFlix</string>
+    <string-array name="settings_items">
+        <item>Account</item>
+        <item>Playback Settings</item>
+        <item>Download Preferences</item>
+        <item>Parental Controls</item>
+        <item>Notifications</item>
+        <item>Help &amp; Support</item>
+        <item>Back</item>
+    </string-array>
+
+</resources>
