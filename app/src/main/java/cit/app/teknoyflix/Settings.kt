@@ -25,6 +25,10 @@ class Settings: Activity() {
                 val intent = Intent(this,Profile::class.java)
                 startActivity(intent)
             }
+            if(selectedOption == "About"){
+                val intent = Intent(this,AboutPage::class.java)
+                startActivity(intent)
+            }
         }
     }
 }
