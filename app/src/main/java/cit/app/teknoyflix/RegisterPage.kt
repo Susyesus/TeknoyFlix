@@ -10,6 +10,7 @@ import android.widget.EditText
 import android.widget.Toast
 
 class RegisterPage : Activity() {
+    //ken gwapo
     @SuppressLint("MissingInflatedId")
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
