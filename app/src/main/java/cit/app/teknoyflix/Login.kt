@@ -1,9 +1,9 @@
 package cit.app.teknoyflix
 
 import android.app.Activity
+import android.content.Context
 import android.content.Intent
 import android.os.Bundle
-import android.util.Patterns
 import android.widget.Button
 import android.widget.EditText
 import android.widget.Toast
@@ -13,47 +13,55 @@ class Login : Activity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_login)
 
-        val usernameInput = findViewById<EditText>(R.id.Email)
         val emailInput = findViewById<EditText>(R.id.Email)
         val passwordInput = findViewById<EditText>(R.id.Password)
         val loginButton = findViewById<Button>(R.id.Login_button)
+        val createAccountButton = findViewById<Button>(R.id.Register_button)
+
+        // Make sure createAccountButton isn't null
+        if (createAccountButton == null) {
+            Toast.makeText(this, "Error: Create Account Button not found", Toast.LENGTH_SHORT).show()
+            return
+        }
+
+        val sharedPreferences = getSharedPreferences("UserPrefs", Context.MODE_PRIVATE)
+        val savedEmail = sharedPreferences.getString("UserEmail", null)
+        val savedPassword = sharedPreferences.getString("UserPassword", null)
 
         loginButton.setOnClickListener {
-            val username = usernameInput.text.toString()
-            val email = emailInput.text.toString()
-            val password = passwordInput.text.toString()
+            val email = emailInput.text.toString().trim()
+            val password = passwordInput.text.toString().trim()
 
-            // Validation logic
-            if (isValidUsername(username) && isValidEmail(email) && password.isNotEmpty()) {
-                if (isCorrectPassword(password)) {
-                    Toast.makeText(this, "Login Successful", Toast.LENGTH_SHORT).show()
-                    // Navigate to LandingActivity
-                    val intent = Intent(this, LandingPage::class.java)
-                    startActivity(intent)
-                    finish()
-                } else {
-                    Toast.makeText(this, "Invalid username or password.", Toast.LENGTH_SHORT).show()
-                }
+            // Input validation
+            if (email.isEmpty() || password.isEmpty()) {
+                Toast.makeText(this, "Please enter both email and password", Toast.LENGTH_SHORT).show()
+                return@setOnClickListener
+            }
+
+            if (!android.util.Patterns.EMAIL_ADDRESS.matcher(email).matches()) {
+                Toast.makeText(this, "Invalid email format", Toast.LENGTH_SHORT).show()
+                return@setOnClickListener
+            }
+
+            // Check saved credentials
+            if (email == savedEmail && password == savedPassword) {
+                Toast.makeText(this, "Login Successful!", Toast.LENGTH_SHORT).show()
+
+                // Redirect to LandingPage
+                startActivity(Intent(this, LandingPage::class.java))
+                finish()
             } else {
-                Toast.makeText(this, "Invalid username or password.", Toast.LENGTH_SHORT).show()
+                Toast.makeText(this, "Invalid email or password", Toast.LENGTH_SHORT).show()
             }
         }
-    }
 
-    // Helper function to validate username
-    private fun isValidUsername(username: String): Boolean {
-        val correctUser = "admin@gmail.com"
-        return username == correctUser
-    }
-
-    // Helper function to validate email format
-    private fun isValidEmail(email: String): Boolean {
-        return Patterns.EMAIL_ADDRESS.matcher(email).matches()
-    }
-
-    // Helper function to check if the password is correct (for demonstration purposes)
-    private fun isCorrectPassword(password: String): Boolean {
-        val correctPassword = "123"
-        return password == correctPassword
+        // Navigate to RegisterPage
+        createAccountButton.setOnClickListener {
+            try {
+                startActivity(Intent(this, RegisterPage::class.java))
+            } catch (e: Exception) {
+                Toast.makeText(this, "Error navigating to RegisterPage: ${e.message}", Toast.LENGTH_LONG).show()
+            }
+        }
     }
 }

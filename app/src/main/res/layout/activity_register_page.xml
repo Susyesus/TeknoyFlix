@@ -30,15 +30,25 @@
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Your Trusted Streaming Platform"
+        android:text="Create Your Account"
         android:textColor="@color/black"
         android:textSize="14sp"
         android:layout_gravity="center"
         android:layout_marginBottom="30dp"/>
 
-    <!-- Email Input -->
+    <!-- Name Input -->
+    <EditText
+        android:id="@+id/FullName"
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:layout_marginBottom="15dp"
+        android:background="@drawable/input_background"
+        android:hint="Full Name"
+        android:paddingStart="16dp"
+        android:textColor="@color/black"
+        android:textColorHint="@color/pink"/>
 
-    <!-- Password Input -->
+    <!-- Email Input -->
     <EditText
         android:id="@+id/Email"
         android:layout_width="match_parent"
@@ -48,8 +58,10 @@
         android:hint="Email"
         android:paddingStart="16dp"
         android:textColor="@color/black"
-        android:textColorHint="@color/pink" />
+        android:textColorHint="@color/pink"
+        android:inputType="textEmailAddress"/>
 
+    <!-- Password Input -->
     <EditText
         android:id="@+id/Password"
         android:layout_width="match_parent"
@@ -62,83 +74,87 @@
         android:layout_marginBottom="10dp"
         android:inputType="textPassword"/>
 
-    <!-- Login Button -->
-    <Button
-        android:id="@+id/Login_button"
+    <!-- Confirm Password Input -->
+    <EditText
+        android:id="@+id/ConfirmPassword"
         android:layout_width="match_parent"
         android:layout_height="50dp"
-        android:text="Log In"
+        android:background="@drawable/input_background"
+        android:hint="Confirm Password"
+        android:textColor="@color/black"
+        android:textColorHint="@color/pink"
+        android:paddingStart="16dp"
+        android:layout_marginBottom="10dp"
+        android:inputType="textPassword"/>
+
+    <!-- Register Button -->
+    <Button
+        android:id="@+id/SignUp_button"
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:text="Sign Up"
         android:textColor="@color/white"
         android:backgroundTint="@color/pink"
         android:textSize="16sp"
         android:layout_marginBottom="10dp"
         android:background="@drawable/input_background"/>
 
-    <!-- Forgot Password -->
+    <!-- OR Divider -->
+
+    <!-- Social Media Buttons -->
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_gravity="center"
         android:layout_marginBottom="20dp"
-        android:text="Forgot password?"
+        android:text="OR"
         android:textColor="@color/white"
         android:textSize="14sp" />
 
-    <!-- OR Divider -->
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="OR"
-        android:textColor="@color/white"
-        android:textSize="14sp"
-        android:layout_gravity="center"
-        android:layout_marginBottom="20dp"/>
-
-    <!-- Social Media Buttons -->
+    <!-- Already Have an Account -->
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:orientation="horizontal"
+        android:layout_marginBottom="30dp"
         android:gravity="center"
-        android:layout_marginBottom="30dp">
+        android:orientation="horizontal">
 
         <ImageView
             android:layout_width="35dp"
             android:layout_height="40dp"
-            android:src="@drawable/ic_google"
+            android:layout_margin="10dp"
             android:contentDescription="Google"
-            android:layout_margin="10dp"/>
+            android:src="@drawable/ic_google" />
 
         <ImageView
             android:layout_width="40dp"
             android:layout_height="40dp"
-            android:src="@drawable/ic_facebook"
+            android:layout_margin="10dp"
             android:contentDescription="Facebook"
-            android:layout_margin="10dp"/>
+            android:src="@drawable/ic_facebook" />
 
         <ImageView
             android:layout_width="40dp"
             android:layout_height="40dp"
-            android:src="@drawable/ic_teams"
+            android:layout_margin="10dp"
             android:contentDescription="Apple"
-            android:layout_margin="10dp"/>
+            android:src="@drawable/ic_teams" />
     </LinearLayout>
 
-    <!-- Sign Up -->
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Don't have an account?"
+        android:text="Already have an account?"
         android:textColor="@color/white"
         android:textSize="14sp"
         android:layout_gravity="center"/>
 
-    <!-- Create Account Button -->
+    <!-- Login Button -->
     <Button
-        android:id="@+id/Register_button"
+        android:id="@+id/Login_redirect"
         android:layout_width="match_parent"
         android:layout_height="50dp"
-        android:text="Create an account"
+        android:text="Log In"
         android:textColor="@color/pink"
         android:backgroundTint="@color/white"
         android:background="@drawable/input_background"
